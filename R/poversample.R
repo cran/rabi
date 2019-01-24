@@ -12,7 +12,7 @@
 #' For information on \href{https://en.wikipedia.org/wiki/Erasure_code#Polynomial_oversampling}{polynomial oversampling}.
 #'
 #' @author Andrew Burchill, \email{andrew.burchill@asu.edu}
-#' @seealso \code{\link{brute_IDs}}, \code{\link{tweaked_IDs}}, \code{\link{simple_IDs}}. Also see the vignette \href{../doc/loosebirdtag.html}{\code{loosebirdtag}} for demonstrations and additional uses.
+#' @seealso \code{\link{brute_IDs}}, \code{\link{tweaked_IDs}}, \code{\link{simple_IDs}}. See the vignette \href{../doc/loosebirdtag.html}{\code{loosebirdtag}} for demonstrations and additional uses. Run \code{\link{exampleGUI}} for a more user-friendly Shiny GUI version of the function.
 #'
 #' If an appropriate argument for \code{available.colors} is provided, each code will be a sequence of strings, otherwise, each code will be a sequence of numeric values.
 #'

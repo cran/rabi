@@ -9,12 +9,12 @@ cat("     |   |            |  {5}\n     o   o            o   o\n     |   |     =
 alphabet <- 8      # the number of colors we have
 total.length <- 5  # the number of positions we want band
 redundancy <- 2    # how many bands we can lose but still ID perfectly
-codes <- rabi::reed_solomon(total.length, redundancy, alphabet)
+codes <- rabi::rs_IDs(total.length, redundancy, alphabet)
 print(paste0("Our list contains ", length(codes), " unique IDs."))
 head(codes, n = 10L)
 
 ## ---- results='hide',echo=FALSE, comment="!!"----------------------------
-codes <- rabi::reed_solomon(total.length, redundancy, alphabet)
+codes <- rabi::rs_IDs(total.length, redundancy, alphabet)
 
 ## ---- echo=FALSE---------------------------------------------------------
 print(paste0("Our list contains ", length(codes), " unique IDs."))
@@ -26,7 +26,7 @@ cat("     |  {5}           |  {5}           |  {5}\n     o   o            o   o 
 
 
 ## ---- results='hide',echo=FALSE, messages=FALSE, warning=FALSE-----------
-codes <- rabi::reed_solomon(total.length = 5, redundancy = 2, alphabet = 8)
+codes <- rabi::rs_IDs(total.length = 5, redundancy = 2, alphabet = 8)
 
 ## ------------------------------------------------------------------------
  #create a function for determining odd or even
@@ -45,7 +45,7 @@ combos <- as.matrix(expand.grid(perms)) - 1
  #only keep sequences that fit our constraints
 combos1 <- 
   combos[which(odd(combos[,1]) & odd(combos[,3]) & !odd(combos[,2]) & !odd(combos[,4])), ]
-codes <- rabi::tweaker(combos1, redundancy, num.tries = 1)  #we're only running it once for speed
+codes <- rabi::tweaked_IDs(combos1, redundancy, num.tries = 1)  #we're only running it once for speed
 print(paste0("The 'tweaked' list contains ", length(codes), " unique IDs."))
 
 
@@ -59,7 +59,7 @@ combos2 <- combos[which((
       (odd(combos[,1]) & odd(combos[,3]) & !odd(combos[,2]) & !odd(combos[,4])) |
       (!odd(combos[,1]) & !odd(combos[,3]) & odd(combos[,2]) & odd(combos[,4]))
       )), ]
-codes <- rabi::tweaker(combos2, redundancy, num.tries = 1)  #we're only running it once for speed
+codes <- rabi::tweaked_IDs(combos2, redundancy, num.tries = 1)  #we're only running it once for speed
  #add either a "left" or "right" indicating which leg {5} is on
 codes <- lapply(codes, function(x) if(odd(x[[1]])) {append(x,"R")} else {append(x,"L")})
 print(paste0("The 'tweaked' list contains ", length(codes), " unique IDs."))
@@ -79,7 +79,7 @@ cat("     |  {5}          {1} {5}\n     o   o            o   o\n    {1} {3}    =
  #now, only {3} and {4} need to be constrained as odd and even, respectively
 combos3 <- 
   combos[which(odd(combos[,3]) & !odd(combos[,4])), ]
-codes <- rabi::tweaker(combos3, redundancy, num.tries = 1)  #we're only running it once for speed
+codes <- rabi::tweaked_IDs(combos3, redundancy, num.tries = 1)  #we're only running it once for speed
 print(paste0("This last list contains ", length(codes), " unique IDs."))
 
 

@@ -1,4 +1,4 @@
-#' Brute force color coding scheme generator
+#' Tweakable brute force color coding scheme generator
 #'
 #' Generates "color" coding schemes used to mark and identify individual animals, given a list of numeric sequences. The codes are robust to an arbitrary number of partial code erasures. This method uses a sloppy, slow, stochastic brute force method.
 #'
@@ -38,10 +38,12 @@
 #'   #We want the first position to only be odd numbers
 #'   #and the second position to only be even.
 #' combos <- combos[which(odd(combos[,1]) & !odd(combos[,2])), ]
+#' \dontrun{
 #' codes <- tweaked_IDs(combos, redundancy, num.tries = 1)
 #'
-#' print(paste0("The 'tweaked' list contains ", length(codes), " unique IDs."))
 #'
+#' print(paste0("The 'tweaked' list contains ", length(codes), " unique IDs."))
+#' }
 #' @export
 #' @importFrom stringdist seq_distmatrix
 
